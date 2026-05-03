@@ -4,9 +4,14 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
-# Need to pass build args if any env vars are required at build time
-# ARG VITE_GEMINI_API_KEY
-# ENV VITE_GEMINI_API_KEY=$VITE_GEMINI_API_KEY
+
+# Accept build arguments and set them as environment variables for the build
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+
+ARG VITE_GEMINI_API_KEY
+ENV VITE_GEMINI_API_KEY=$VITE_GEMINI_API_KEY
+
 RUN npm run build
 
 # Production stage
