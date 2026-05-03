@@ -82,6 +82,14 @@ The frontend is a React application built using Vite.
    ```
    The frontend will typically run on `http://localhost:5173`.
 
+## Google Services Integration
+
+This project leverages several Google Services to provide a modern, scalable, and intelligent user experience:
+- **Google Gemini AI API**: Used via the `@google/genai` SDK to power the multilingual AI Chat Assistant and dynamically generate candidate profiles.
+- **Google Firebase Analytics**: Integrated into the React routing system to automatically track user page views and activity metrics.
+- **Google Cloud Run**: Utilized for production hosting of both the containerized frontend (React/Vite) and backend (Node.js) applications.
+- **Google Cloud Build & Artifact Registry**: Forms the CI/CD pipeline, building Docker images and securely storing them for deployment.
+
 ## Technologies Used
 
 ### Frontend
