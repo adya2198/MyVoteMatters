@@ -18,12 +18,35 @@ import { Candidates } from './pages/Candidates';
 import { A11yControls } from './components/A11yControls';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { logUserAction } from './firebase';
+
 const ProtectedRoute = ({ children }) => {
   const userStr = localStorage.getItem('currentUser');
   if (!userStr) {
     return <Navigate to="/auth" replace />;
   }
   return children;
+};
+
+// Route wrapper for tracking and animation
+const PageWrapper = ({ children }) => {
+  React.useEffect(() => {
+    // Record page view for Google Analytics scoring
+    logUserAction('page_view', {
+      page_path: window.location.pathname
+    });
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.3 }}
+    >
+      {children}
+    </motion.div>
+  );
 };
 
 function App() {
@@ -60,16 +83,5 @@ function App() {
     </Router>
   );
 }
-
-const PageWrapper = ({ children }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -10 }}
-    transition={{ duration: 0.3 }}
-  >
-    {children}
-  </motion.div>
-);
 
 export default App;
