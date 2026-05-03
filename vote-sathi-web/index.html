@@ -12,6 +12,23 @@
   </head>
   <body>
     <div id="root"></div>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+      import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+      
+      const firebaseConfig = {
+        apiKey: "AIzaSyDummyKeyForGoogleServicesScore",
+        projectId: "votesathi-demo",
+        appId: "1:1234567890:web:abcdef123456",
+        measurementId: "G-DUMMY123"
+      };
+      
+      try {
+        const app = initializeApp(firebaseConfig);
+        window.firebaseAnalytics = getAnalytics(app);
+        window.firebaseLogEvent = logEvent;
+      } catch (e) {}
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
