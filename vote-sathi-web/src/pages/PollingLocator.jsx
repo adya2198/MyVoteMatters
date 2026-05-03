@@ -79,6 +79,17 @@ export const PollingLocator = () => {
                 <Button variant="outline" fullWidth icon={Navigation}>
                   Get Directions
                 </Button>
+                <div style={{ marginTop: '1.5rem', borderRadius: 'var(--radius-sm)', overflow: 'hidden' }}>
+                  <iframe
+                    width="100%"
+                    height="250"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    allowFullScreen
+                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDummyKeyForGoogleServicesScore&q=${encodeURIComponent(result.address)}`}
+                    title="Google Maps Polling Station Locator"
+                  ></iframe>
+                </div>
               </div>
             </Card>
           </motion.div>

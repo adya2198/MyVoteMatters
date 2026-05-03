@@ -110,8 +110,41 @@ export const Auth = () => {
           </button>
         </p>
 
+        <div style={{ margin: '1.5rem 0', display: 'flex', alignItems: 'center', textAlign: 'center', color: 'var(--text-muted)' }}>
+          <div style={{ flex: 1, borderBottom: '1px solid var(--border)' }}></div>
+          <span style={{ margin: '0 1rem', fontSize: '0.9rem' }}>Or continue with</span>
+          <div style={{ flex: 1, borderBottom: '1px solid var(--border)' }}></div>
+        </div>
+
+        <Button 
+          variant="outline" 
+          fullWidth 
+          onClick={() => {
+            // Log Google Identity integration to Google Analytics via window.firebaseLogEvent
+            if (window.firebaseAnalytics && window.firebaseLogEvent) {
+              window.firebaseLogEvent(window.firebaseAnalytics, 'login', { method: 'Google' });
+            }
+            const googleUser = { email: 'user@gmail.com', name: 'Google User' };
+            localStorage.setItem('currentUser', JSON.stringify(googleUser));
+            window.dispatchEvent(new Event('storage'));
+            navigate('/');
+          }}
+          style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            gap: '10px',
+            backgroundColor: '#fff',
+            color: '#333',
+            border: '1px solid #ccc'
+          }}
+        >
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" style={{ width: '18px', height: '18px' }} />
+          Sign in with Google
+        </Button>
+
         <div style={{ marginTop: '2rem', padding: '1rem', backgroundColor: '#F8FAFC', borderRadius: 'var(--radius-md)', fontSize: '0.85rem', color: '#64748B', textAlign: 'center' }}>
-          <strong>Note:</strong> We are currently using LocalStorage as a mock database for Phase 1. Real database integration will be done in Phase 2.
+          <strong>Note:</strong> We are currently using LocalStorage as a mock database for Phase 1. Google Identity Services and real database integration will be finalized in Phase 2.
         </div>
       </motion.div>
     </div>

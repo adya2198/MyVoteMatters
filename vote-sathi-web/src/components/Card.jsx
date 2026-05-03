@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 
-export const Card = ({ children, className = '', hover = true, delay = 0 }) => {
+export const Card = memo(({ children, className = '', hover = true, delay = 0 }) => {
   const style = {
     backgroundColor: 'var(--surface)',
     borderRadius: 'var(--radius-lg)',
@@ -27,4 +27,4 @@ export const Card = ({ children, className = '', hover = true, delay = 0 }) => {
       {children}
     </Component>
   );
-};
+});

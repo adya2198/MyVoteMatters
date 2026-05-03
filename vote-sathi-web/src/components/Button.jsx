@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 
-export const Button = ({ 
+export const Button = memo(({ 
   children, 
   variant = 'primary', 
   size = 'md', 
@@ -70,4 +70,4 @@ export const Button = ({
       {children}
     </motion.button>
   );
-};
+});
