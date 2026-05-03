@@ -35,13 +35,8 @@ export const Candidates = () => {
       setCandidates(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error("Gemini API Error in Candidates:", err);
-      // Graceful fallback
-      setCandidates([
-        { id: 1, name: "Rajesh Kumar (Fallback)", party: "Progressive Party", age: 45, edu: "M.A. Political Science" },
-        { id: 2, name: "Priya Sharma (Fallback)", party: "Development Front", age: 38, edu: "L.L.B." },
-        { id: 3, name: "Amit Singh (Fallback)", party: "United Citizens", age: 52, edu: "B.Tech" },
-      ]);
-      setError('Using sample data. (API connection failed)');
+      setCandidates([]);
+      setError('Unable to fetch candidates at this moment. Please try again later.');
     } finally {
       setLoading(false);
     }
